@@ -4,8 +4,9 @@ sap.ui.define([
 		"sap/ui/model/json/JSONModel",
 		"zjblessons/ControlTask_Leshkovich_Alexey/model/formatter",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
-	], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageBox"
+	], function (BaseController, JSONModel, formatter, Filter, FilterOperator, MessageBox) {
 		"use strict";
 
 		return BaseController.extend("zjblessons.ControlTask_Leshkovich_Alexey.controller.Worklist", {
@@ -158,7 +159,11 @@ sap.ui.define([
 				if (aTableSearchState.length !== 0) {
 					oViewModel.setProperty("/tableNoDataText", this.getResourceBundle().getText("worklistNoDataWithSearchText"));
 				}
+			},
+			onInfo : function(){
+				MessageBox.information("Лешкович Алексей");
 			}
+			
 
 		});
 	}

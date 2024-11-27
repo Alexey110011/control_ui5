@@ -1,23 +1,29 @@
 <mvc:View
 	controllerName="zjblessons.ControlTask_Leshkovich_Alexey.controller.Worklist"
-	xmlns="sap.m"
+	xmlns="sap.ui.table"
+	xmlns:m="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:table ="sap.ui.table"
 	xmlns:semantic="sap.f.semantic">
 
-	<semantic:SemanticPage
+	<m:Page
 		id="page"
-		headerPinnable="false"
-		toggleHeaderOnTitleClick="false">
-
-		<semantic:titleHeading>
-			<Title text="{i18n>worklistTitle}" />
-		</semantic:titleHeading>
-
-		<semantic:content>
-			<Table
+		title="Materials"
+		class="sapUiContentPadding sapUiResponsivePadding--header sapUiResponsivePadding--subHeader sapUiResponsivePadding--content sapUiResponsivePadding--footer"
+		showNavButton="true" >
+		<m:headerContent>
+			<m:OverflowToolbar>
+				<m:SearchField />
+				<m:Button text = "Show Info" press = '.onInfo'/>
+				<m:Button text = "Show ID" press = '.onIDInfo'/>
+			</m:OverflowToolbar>
+		</m:headerContent>
+		<m:content>
+			
+			<table:Table
 				id="table"
 				width="auto"
-				items="{
+				rows="{
 					path: '/zjblessons_base_Materials',
 					sorter: {
 						path: 'MaterialID',
@@ -28,53 +34,48 @@
 				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
 				growing="true"
 				growingScrollToLoad="true"
-				updateFinished="onUpdateFinished">
-
-				<headerToolbar>
-					<Toolbar>
-						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
-						<ToolbarSpacer />
-						<SearchField
-							id="searchField"
-							tooltip="{i18n>worklistSearchTooltip}"
-							search="onSearch"
-							width="auto">
-						</SearchField>
-					</Toolbar>
-				</headerToolbar>
+				updateFinished="onUpdateFinished"
+				mode="SingleSelect">
 
 				<columns>
-					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					<Column width="15%" id="nameColumn">
+						<m:Label text="MaterialID" id="idMaterialID"/>
+						<table:template>
+							<m:Text text = "{MaterialID}"/>
+						</table:template>
 					</Column>
-					<Column id="unitNumberColumn" hAlign="End">
-						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+					<Column width="15%" id="nameColumn2">
+					<m:Label text="GroupID" id="idGroupID"/>
+						<table:template>
+							<m:Text text = "{GroupID}"/>
+						</table:template>
+					</Column>
+						<Column width="15%" id="nameColumn3">
+					<m:Label text="SubGroupID" id="idSubGroupID"/>
+						<table:template>
+							<m:Text text = "{SubGroupID}"/>
+						</table:template>
+					</Column>
+						<Column width="15%" id="nameColumn4">
+					<m:Label text="SubGroupText" id="idSubGroupText"/>
+						<table:template>
+							<m:Text text = "{SubGroupText}"/>
+						</table:template>
+					</Column>
+						<Column width="15%" id="nameColumn5">
+					<m:Label text="MaterialText" id="idMaterialText"/>
+						<table:template>
+							<m:Text text = "{MaterialText}"/>
+						</table:template>
+					</Column>
+						<Column width="15%" id="nameColumn6">
+					<m:Label text="MAterialDescription" id="idMaterialDescriptionID"/>
+						<table:template>
+							<m:Text text = "{MaterialDescription}"/>
+						</table:template>
 					</Column>
 				</columns>
-
-				<items>
-					<ColumnListItem
-						type="Navigation"
-						press="onPress">
-						<cells>
-							<ObjectIdentifier
-								title="{MaterialID}"/>
-							<ObjectNumber
-								number="{
-									path: 'Rating',
-									formatter: '.formatter.numberUnit'
-								}"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</semantic:content>
-
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
-		</semantic:sendEmailAction>
-
-
-	</semantic:SemanticPage>
-
+			</table:Table>
+		</m:content>
+	</m:Page>
 </mvc:View>
